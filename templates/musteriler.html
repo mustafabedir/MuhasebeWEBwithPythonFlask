@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3>Kontrol paneli</h3>
+<small>Hoş geldin {{session["username"]}}</small>
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;<a href="/addmusteri" class="btn btn-danger">Musteri Ekle</a>
+{% if musterilers %} 
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">TCKN</th>
+        <th scope="col">Ad-Soyad</th>
+        <th scope="col">Telefon</th>
+        <th scope="col">E-Mail</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for musteri in musterilers %}
+        <tr>
+                <th>{{musteri.musteriid}}</th>
+                <td>{{musteri.tckn}}</td>
+                <td>{{musteri.ad}}</td>
+                <td>{{musteri.telefon}}</td>
+                <td>{{musteri.email}}</td>
+                <td><a href="/editmusteri/{{musteri.musteriid}}" class="btn btn-primary">Guncelle</a></td>
+                <td><a href="/deletemusteri/{{musteri.musteriid}}" class="btn btn-danger">Sil</a></td>
+              </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% else %}
+
+<div class="alert alert-danger">
+    Bu bolumde musteri bulunmuyor.
+</div>
+
+{% endif %} 
+
+{% endblock body %}

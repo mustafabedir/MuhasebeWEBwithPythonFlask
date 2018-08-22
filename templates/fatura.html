@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3>Kontrol paneli</h3>
+<small>Hoş geldin {{session["username"]}}</small>
+
+{% if faturalar %} 
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tutar</th>
+        <th scope="col">Aciklama</th>
+        <th scope="col">Cari Islem</th>
+        <th scope="col">Musteri Ad</th>
+        <th scope="col">TCKN</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for fatura in faturalar %}
+        <tr>
+                <th>{{fatura.tahsilatid}}</th>
+                <td>{{fatura.tutar}}</td>
+                <td>{{fatura.aciklama}}</td>
+                <td>{{fatura.hizmetad}}</td>
+                <td>{{fatura.ad}}</td>
+                <td>{{fatura.tckn}}</td>
+                <td><a href="/deletefatura/{{fatura.tahsilatid}}" class="btn btn-danger">Sil</a></td>
+              </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% else %}
+
+<div class="alert alert-danger">
+    Bu bolumde Cari bulunmuyor.
+</div>
+
+{% endif %} 
+
+{% endblock body %}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% from "includes/formhelpers.html" import render_field %}
+
+<h3>Cari Ekle</h3>
+<hr>
+<form method="POST">
+        {{ render_field(form.hizmetad, class = "form-control") }}
+        {{ render_field(form.aciklama, class = "form-control") }}
+        {{ render_field(form.tarih, class = "form-control") }}
+        {{ render_field(form.tutar, class = "form-control") }}
+        {{ render_field(form.musteri, class = "form-control") }}
+        
+        <button type="submit" class="btn btn-primary">Ekle</button>
+
+</form>
+
+{% endblock body %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3>Kontrol paneli</h3>
+<small>Hoş geldin {{session["username"]}}</small>
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+&emsp; &emsp;<a href="/addcari" class="btn btn-danger">Cari Ekle</a>
+{% if carilers %} 
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Hizmet Adı</th>
+        <th scope="col">Açıklama</th>
+        <th scope="col">Tarih</th>
+        <th scope="col">Tutar</th>
+        <th scope="col">Musteri</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for cari in carilers %}
+        <tr>
+                <th>{{cari.cariid}}</th>
+                <td>{{cari.hizmetad}}</td>
+                <td>{{cari.aciklama}}</td>
+                <td>{{cari.tarih}}</td>
+                <td>{{cari.tutar}}</td>
+                <td>{{cari.ad}}</td>
+
+                <td><a href="/editcariler/{{cari.cariid}}" class="btn btn-primary">Guncelle</a></td>
+                <td><a href="/deletecariler/{{cari.cariid}}" class="btn btn-danger">Sil</a></td>
+                <td><a href="/odecari/{{cari.cariid}}" class="btn btn-success">Ode</a></td>
+              </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% else %}
+
+<div class="alert alert-danger">
+    Bu bolumde Cari bulunmuyor.
+</div>
+
+{% endif %} 
+
+{% endblock body %}

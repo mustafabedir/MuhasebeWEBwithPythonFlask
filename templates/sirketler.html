@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3>Kontrol paneli</h3>
+<small>Hoş geldin {{session["username"]}}</small>
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+&emsp; &emsp;<a href="/addsirket" class="btn btn-danger">Sirket Ekle</a>
+{% if sirketlers %} 
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Islem Ad</th>
+        <th scope="col">Aciklama</th>
+        <th scope="col">Tutar</th>
+        
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for sirket in sirketlers %}
+        <tr>
+                <th>{{sirket.sirketid}}</th>
+                <td>{{sirket.islemad}}</td>
+                <td>{{sirket.aciklama}}</td>
+                <td>{{sirket.tutar}}</td>
+                <td><a href="/editsirket/{{sirket.sirketid}}" class="btn btn-primary">Guncelle</a></td>
+                <td><a href="/deletesirket/{{sirket.sirketid}}" class="btn btn-danger">Sil</a></td>
+              </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% else %}
+
+<div class="alert alert-danger">
+    Bu bolumde musteri bulunmuyor.
+</div>
+
+{% endif %} 
+
+{% endblock body %}
